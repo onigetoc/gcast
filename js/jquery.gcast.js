@@ -16,7 +16,7 @@
 
         plugin.init = function () {
             plugin.settings = $.fn.extend({}, defaults, options);
-            console.log('plug setting '+plugin.settings);
+            //console.log('plug setting '+plugin.settings);
             if (options.init) options.init.call(plugin);
 
             var opts = plugin.settings;
@@ -33,7 +33,7 @@
                 //console.log(xmldata);
 
                 var xml = getXMLDocument(xmldata);
-                console.log(xml);
+                //console.log(xml);
                 var xmlEntries = xml.getElementsByTagName('item');
 
                 var xmlChannel = xml.getElementsByTagName('channel');
@@ -66,6 +66,7 @@
                         if (xmlMedia.length > 0) {
 
                             var mediaURL = xmlMedia[0].getAttribute("url");
+                            //console.log(mediaURL);
 
                             var extension = mediaURL.split('.').pop();
 
@@ -87,7 +88,7 @@
                             if(!xmlImageItunes){
                                 xmlImage = xmlImage_channel;
                             }
-                            console.log(xmlImage);
+                            //console.log(xmlImage);
                         }
 
                     }

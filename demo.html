@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Gcast - jQuery plugin to play podcast in jPlayer</title>
+    <link rel="stylesheet" type="text/css" href="src/ressources/jplayer/skin/pink.flag/jplayer.pink.flag.css">
+
+	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
+	<script type='text/javascript' src="src/ressources/jplayer/js/jquery.jplayer.min.js"></script>
+    <script type='text/javascript' src="src/ressources/jplayer/js/jplayer.playlist.min.js"></script>
+
+    <script type='text/javascript' src="js/jquery.gcast.js"></script>
+
+<style type='text/css'>
+.jp-playlist {
+	max-height: 200px;
+	width: 100%;
+	height: 100%;
+	padding-right: 20px;
+	overflow-x: hidden;
+	overflow-y: auto;
+		
+	/*For mobile scroll*/
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+</style>
+
+<script type='text/javascript'>
+$(document).ready(function () {
+	
+	var myPlaylist = new jPlayerPlaylist({
+        jPlayer: "#jquery_jplayer_1",
+        cssSelectorAncestor: "#jp_container_1",
+    },[],{
+		
+		playlistOptions: {autoPlay: true},
+		
+		swfPath: "src/ressources/jplayer/Jplayer.swf",
+        supplied: "mp3,oga,m4a,m4v,mp4",
+		solution: "flash, html",
+        wmode: "window",
+        smoothPlayBar: true,
+        keyEnabled: true,
+		/* Need it to show podcast poster*/
+		size: {
+            width: "243px",
+            height: "243px",
+            cssClass: "jp-poster"
+        }
+    });
+
+
+	/*************** PODPARSER EXEMPLES *******************/
+
+    // basic
+    /*
+    $.gcast({
+        player: myPlaylist
+        url: 'http://feeds.feedburner.com/tiestos_club_life',
+        limit: '10'
+    });
+    */
+
+    // Exemple 1
+    // Call gcast with the in the dropdown selected podcast on load
+    $.gcast({
+        url: $("#drop-playlist option:selected").val(),
+        player: myPlaylist,
+        limit: '10' // default 20
+    });
+
+    // Exemple 2
+	// Drop down playlist
+	$("#drop-playlist").change(function () {
+        $.gcast({url: this.value, player: myPlaylist});
+    });
+
+	// Exemple 3
+	// Load gcast from form input
+	$("#loadPlaylist").submit(function (e) {
+		e.preventDefault();
+
+        $.gcast({url: $("#Podurl").val(), player: myPlaylist});
+	
+	});
+	
+	//end PodParser 
+	
+	// Test add song and play it
+	$("#addToPlaylist").submit(function (e) {
+		e.preventDefault();
+		
+		var Podurl = $("#addToPlaylist-Input").val();
+		
+		var contentType = getExt(Podurl);
+		console.log(contentType);
+		
+		var filename = Podurl.match(/([^\/]+)(?=\.\w+$)/)[0];
+		filename = filename.replace(/-/g, ' ');
+		filename = filename.replace(/_/g, ' ');
+		
+		var jpadd = {};
+		jpadd[contentType] = Podurl;
+		jpadd.title = filename;
+		jpadd.artist = "Test artist";
+		//jpadd.poster = this_poster;
+		
+		myPlaylist.add(jpadd, true);	
+	});	
+
+		
+    function getExt(url) {
+      var ext = url.split('.').pop();
+
+        if (ext) {
+          //return formats[i].type + "/" + ext;
+            if (ext == "mp4" || ext == "m4a" || (ext == "webm")) ext = "m4v";
+            if (ext == "ogg") ext = "oga";
+            if (ext == "") ext = "mp3";
+
+            return ext;
+        }
+
+      // it doesn't matter now, as it's unsupported.
+      return "";
+    }
+
+
+}); // Ready end
+
+</script>
+
+
+</head>
+<body>
+  <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+  
+<div id="jp_container_1" class="jp-audio">
+    <div class="jp-type-playlist">
+        <div class="jp-gui jp-interface">
+            <ul class="jp-controls">
+                <li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a>
+                </li>
+                <li><a href="javascript:;" class="jp-play" tabindex="1">play</a>
+                </li>
+                <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a>
+                </li>
+                <li><a href="javascript:;" class="jp-next" tabindex="1">next</a>
+                </li>
+                <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a>
+                </li>
+                <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a>
+                </li>
+                <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a>
+                </li>
+                <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a>
+                </li>
+            </ul>
+            <div class="jp-progress">
+                <div class="jp-seek-bar">
+                    <div class="jp-play-bar"></div>
+                </div>
+            </div>
+            <div class="jp-volume-bar">
+                <div class="jp-volume-bar-value"></div>
+            </div>
+            <div class="jp-current-time"></div>
+            <div class="jp-duration"></div>
+            <ul class="jp-toggles">
+                <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a>
+                </li>
+                <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a>
+                </li>
+                <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a>
+                </li>
+                <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a>
+                </li>
+<!--<li><a class="jp-full-screen" title="full screen" tabindex="1" href="javascript:;">full screen</a></li>
+                <li><a class="jp-restore-screen" title="restore screen" tabindex="1" href="javascript:;">restore screen</a></li> -->
+            </ul>
+        </div>
+        <div class="jp-playlist">
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+        <div class="jp-no-solution">	<span>Update Required</span>
+To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.</div>
+    </div>
+</div>
+<br>
+<!--Load Podcast -->
+<div class="podparser-loader" style="position:absolute; top:20px; left:300px;">
+<h1>jPlayer Podcast Player</h1>
+
+<p>DropDown load Podcast Playlist: <br>
+  <select id="drop-playlist" style="width: 240px;">
+    <option value="">Select Podcast</option>
+    <option value="http://feeds.twit.tv/twit" selected>This Week in Tech</option>
+    <option value="http://podcast.armadamusic.com/asot/podcast.xml">A State of Trance Official Podcast</option>
+    <option value="http://downloads.bbc.co.uk/podcasts/worldservice/globalnews/rss.xml">BBC News</option>
+    <option value="http://www.thecurrent.org/collection/song-of-the-day/rss">Current Song of the Day</option>
+    <option value="http://www.foxsportsradio.com/podcast/itunes/Jay_Mohr_Sports_Hours_itunes.xml">Jay Mohr Sports</option>
+    <option value="http://nerdist.libsyn.com/rss">The Nerdist</option>
+    <option value="http://feeds.feedburner.com/tedtalks_video">Video Podcast: Ted Talk</option>
+    <option value="http://feeds.twit.tv/tnt_video_large">Video Podcast: Twit.tv</option>
+  </select>
+  </p>
+<p>-------------------------------------<br>
+</p>
+<form id="loadPlaylist" action="">Enter Podcast URL:
+  <br>
+    <input name="Podurl" type="text" id="Podurl" value="http://www.hbo.com/podcasts/billmaher/podcast.xml" size="50">
+    <input type="submit" value="Submit">
+</form>
+<br>
+<p>-------------------------------------<br>
+<form id="addToPlaylist" action="">Enter audio URL:
+  <br>
+    <input name="addToPlaylist-Input" type="text" id="addToPlaylist-Input" value="http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3" size="50">
+    <input type="submit" value="Submit">
+</form>
+<br>
+<p>-------------------------------------<br>
+<!--Load Podcast end -->
+<br><br><br>
+<div><a href="http://jsfiddle.net/onigetoc/2mb5C/show" target="_blank">Find Itune podcast feed url</a></div>
+</div>
+
+</body>
+</html>
+

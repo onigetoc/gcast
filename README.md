@@ -12,12 +12,16 @@ Gcast jQuery Podcast parser for jPlayer ( XML RSS media )
 
 Demo
 -----------
-+ Demo: http://scripts.toolurl.com/audio/Podcast-parser-for-jPlayer/demo.html
++ Demo: http://onigetoc.github.io/gcast/demo
 
 How to use
 ---------------
 
 basic loading podcast in jPlayer playlist.
+
+player: myPlaylist: The playlist name var myPlaylist = new jPlayerPlaylist({...}
+url: podcast-url
+limit: 5: Default 20
 ```
 $.gcast({
     player: myPlaylist
@@ -46,7 +50,7 @@ More way to load podcast width jQuery in the demo file.
 Quick start
 -----------
 
-Clone the repo, `git clone git://github.com/onigetoc/Podcast-parser-for-jPlayer.git`.
+Clone the repo, `git clone git://github.com/onigetoc/gcast.git`.
 
 
 Bug tracker
@@ -54,7 +58,7 @@ Bug tracker
 
 Have a bug? Please create an issue here on GitHub.
 
-https://github.com/onigetoc/Podcast-parser-for-jPlayer/issues
+https://github.com/onigetoc/gcast/issues
 
 
 Contributing

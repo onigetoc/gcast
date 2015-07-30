@@ -13,6 +13,7 @@ Gcast jQuery Podcast parser for jPlayer ( XML RSS media )
 Demo
 -----------
 + Demo: http://onigetoc.github.io/gcast/demo
++ Real website using Gcast: http://podzic.com
 
 How to use
 ---------------

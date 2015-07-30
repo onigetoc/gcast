@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
@@ -21,13 +20,105 @@
 
     <section class="main-content">
       <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span>Welcome to GitHub Pages.</h3></a>
 
-        <form id="loadPlaylist" action="">Enter Podcast URL:
+        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+
+        <div id="jp_container_1" class="jp-audio">
+            <div class="jp-type-playlist">
+                <div class="jp-gui jp-interface">
+                    <ul class="jp-controls">
+                        <li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a>
+                        </li>
+                        <li><a href="javascript:;" class="jp-play" tabindex="1">play</a>
+                        </li>
+                        <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a>
+                        </li>
+                        <li><a href="javascript:;" class="jp-next" tabindex="1">next</a>
+                        </li>
+                        <li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a>
+                        </li>
+                        <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a>
+                        </li>
+                        <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a>
+                        </li>
+                        <li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a>
+                        </li>
+                    </ul>
+                    <div class="jp-progress">
+                        <div class="jp-seek-bar">
+                            <div class="jp-play-bar"></div>
+                        </div>
+                    </div>
+                    <div class="jp-volume-bar">
+                        <div class="jp-volume-bar-value"></div>
+                    </div>
+                    <div class="jp-current-time"></div>
+                    <div class="jp-duration"></div>
+                    <ul class="jp-toggles">
+                        <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a>
+                        </li>
+                        <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a>
+                        </li>
+                        <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a>
+                        </li>
+                        <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a>
+                        </li>
+                        <!--<li><a class="jp-full-screen" title="full screen" tabindex="1" href="javascript:;">full screen</a></li>
+                                        <li><a class="jp-restore-screen" title="restore screen" tabindex="1" href="javascript:;">restore screen</a></li> -->
+                    </ul>
+                </div>
+                <div class="jp-playlist">
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="jp-no-solution">	<span>Update Required</span>
+                    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.</div>
+            </div>
+        </div>
+        <br>
+        <!--Load Podcast -->
+        <div class="podparser-loader" style="position:absolute; top:20px; left:300px;">
+            <h1>jPlayer Podcast Player</h1>
+
+            <p>DropDown load Podcast Playlist: <br>
+                <select id="drop-playlist" style="width: 240px;">
+                    <option value="">Select Podcast</option>
+                    <option value="http://feeds.twit.tv/twit" selected>This Week in Tech</option>
+                    <option value="http://podcast.armadamusic.com/asot/podcast.xml">A State of Trance Official Podcast</option>
+                    <option value="http://downloads.bbc.co.uk/podcasts/worldservice/globalnews/rss.xml">BBC News</option>
+                    <option value="http://www.thecurrent.org/collection/song-of-the-day/rss">Current Song of the Day</option>
+                    <option value="http://www.foxsportsradio.com/podcast/itunes/Jay_Mohr_Sports_Hours_itunes.xml">Jay Mohr Sports</option>
+                    <option value="http://nerdist.libsyn.com/rss">The Nerdist</option>
+                    <option value="http://feeds.feedburner.com/tedtalks_video">Video Podcast: Ted Talk</option>
+                    <option value="http://feeds.twit.tv/tnt_video_large">Video Podcast: Twit.tv</option>
+                </select>
+            </p>
+            <p>-------------------------------------<br>
+            </p>
+            <form id="loadPlaylist" action="">Enter Podcast URL:
+                <br>
+                <input name="Podurl" type="text" id="Podurl" value="http://www.hbo.com/podcasts/billmaher/podcast.xml" size="50">
+                <input type="submit" value="Submit">
+            </form>
             <br>
-            <input name="Podurl" type="text" id="Podurl" value="http://www.hbo.com/podcasts/billmaher/podcast.xml" size="50">
-            <input type="submit" value="Submit">
-        </form>
+            <p>-------------------------------------<br>
+            <form id="addToPlaylist" action="">Enter audio URL:
+                <br>
+                <input name="addToPlaylist-Input" type="text" id="addToPlaylist-Input" value="http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3" size="50">
+                <input type="submit" value="Submit">
+            </form>
+            <br>
+            <p>-------------------------------------<br>
+                <!--Load Podcast end -->
+                <br><br><br>
+            <div><a href="http://jsfiddle.net/onigetoc/2mb5C/show" target="_blank">Find Itune podcast feed url</a></div>
+        </div>
+        <script type='text/javascript' src="js/jquery.gcast.js"></script>
+
+        <!--************************************************************-->
+
 <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub for Mac or GitHub for Windows, simply sync your repository and you’ll see the new branch.</p>
 
 <h3>

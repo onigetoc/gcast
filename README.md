@@ -1,4 +1,4 @@
-Gcast jQuery plugin podcast parser for jPlayer
+Gcast - jQuery plugin podcast parser for jPlayer
 ========
 
 Gcast jQuery Podcast parser for jPlayer ( XML RSS media )

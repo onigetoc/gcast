@@ -66,6 +66,7 @@
                         if (xmlMedia.length > 0) {
 
                             var mediaURL = xmlMedia[0].getAttribute("url");
+
                             //console.log(mediaURL);
 
                             var extension = mediaURL.split('.').pop();
@@ -87,6 +88,8 @@
                             xmlImageItunes = xmlImages[0].getAttribute("href");
                             if(!xmlImageItunes){
                                 xmlImage = xmlImage_channel;
+                            }else{
+                                xmlImage = xmlImageItunes;
                             }
                             //console.log(xmlImage);
                         }

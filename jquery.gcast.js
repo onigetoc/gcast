@@ -88,6 +88,8 @@
                             xmlImageItunes = xmlImages[0].getAttribute("href");
                             if(!xmlImageItunes){
                                 xmlImage = xmlImage_channel;
+                            }else{
+                                xmlImage = xmlImageItunes;
                             }
                             //console.log(xmlImage);
                         }

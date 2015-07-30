@@ -19,11 +19,11 @@ How to use
 
 basic loading podcast in jPlayer playlist.
 ```
-    $.gcast({
-        player: myPlaylist
-        url: 'http://feeds.feedburner.com/tiestos_club_life',
-        limit: '10'
-    });
+$.gcast({
+    player: myPlaylist
+    url: 'http://feeds.feedburner.com/tiestos_club_life',
+    limit: '10'
+});
 ```
 
 Load playlist with Drop down
@@ -35,11 +35,11 @@ Load playlist with Drop down
 </select>
 ```
 
+Drop down playlist example.
 ```
-// Drop down playlist
-	$("#drop-playlist").change(function () {
-        $.gcast({url: this.value, player: myPlaylist});
-    });
+$("#drop-playlist").change(function () {
+    $.gcast({url: this.value, player: myPlaylist});
+});
 ```
 More way to load podcast width jQuery in the demo file.
 
